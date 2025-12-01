@@ -38,5 +38,3 @@ Check [values.yaml](./charts/drifthound/values.yaml) file or run:
 ```console
 helm show values treezio/drifthound
 ```
-
-
