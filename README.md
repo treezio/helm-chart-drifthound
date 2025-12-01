@@ -1,7 +1,7 @@
 # DriftHound Helm Chart
 ## Description
 
-This repository contains helm chart to deploy [DriftHound](https://github.com/treezio/drifthound
+This repository contains helm chart to deploy [DriftHound](https://github.com/treezio/drifthound)
 
 ## License
 
