@@ -1,0 +1,80 @@
+{{- if .Values.migrations.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "drifthound.fullname" . }}-migrations-{{ .Release.Revision }}
+  labels:
+    {{- include "drifthound.labels" . | nindent 4 }}
+    app.kubernetes.io/component: migrations
+  annotations:
+    # This hook ensures the job runs before deployment during install/upgrade
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "0"
+    # Delete the job after successful completion (keep failed jobs for debugging)
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: {{ .Values.migrations.backoffLimit }}
+  activeDeadlineSeconds: {{ .Values.migrations.activeDeadlineSeconds }}
+  template:
+    metadata:
+      name: {{ include "drifthound.fullname" . }}-migrations
+      labels:
+        {{- include "drifthound.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: migrations
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      restartPolicy: Never
+      {{- if .Values.serviceAccount.enabled }}
+      serviceAccountName: {{ include "drifthound.fullname" . }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
+      imagePullSecrets:
+        {{- if .Values.imagePullSecrets }}
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
+        {{- end }}
+      containers:
+        - name: migrations
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            {{- toYaml .Values.migrations.command | nindent 12 }}
+          {{- if or (.Values.drifthoundConfig) (.Values.drifthoundSecrets) }}
+          envFrom:
+            {{- if .Values.drifthoundConfig }}
+            - configMapRef:
+                name: {{ include "drifthound.fullname" . }}
+            {{- end }}
+            {{- if .Values.drifthoundSecrets }}
+            - secretRef:
+                name: {{ include "drifthound.fullname" . }}
+            {{- end }}
+          {{- end }}
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

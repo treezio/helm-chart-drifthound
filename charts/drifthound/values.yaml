@@ -110,3 +110,13 @@ hpa:
   targetCPUUtilizationPercentage: 80  # Target CPU utilization percentage for HPA to trigger scaling
   maxReplicas: 10  # Maximum number of pods that HPA can scale up to
   minReplicas: 2  # Minimum number of pods that HPA should maintain
+
+# Database migrations job configuration
+migrations:
+  enabled: true  # Enable or disable database migrations job
+  command:
+    - /bin/sh
+    - -c
+    - bundle exec rails db:migrate
+  backoffLimit: 3  # Number of retries before considering the job as failed
+  activeDeadlineSeconds: 600  # Maximum duration (in seconds) for the job to complete
