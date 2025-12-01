@@ -17,7 +17,7 @@ This repository contains helm chart to deploy [DriftHound](https://github.com/tr
 helm repo add drifthound https://treezio.github.io/helm-chart-drifthound
 ```
 
-You list the charts running `helm search repo treezio/drifthound`.
+You list the charts running `helm search repo drifthound`.
 
 ## Install Chart
 
@@ -36,7 +36,5 @@ helm uninstall [RELEASE_NAME]
 Check [values.yaml](./charts/drifthound/values.yaml) file or run:
 
 ```console
-helm show values treezio/drifthound
+helm show values drifthound/drifthound
 ```
-
-
