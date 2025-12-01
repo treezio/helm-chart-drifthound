@@ -1,0 +1,10 @@
+{{- if .Values.drifthoundConfig }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "drifthound.fullname" . }}
+  labels:
+    {{- include "drifthound.labels" . | nindent 4 }}
+data:
+  {{- toYaml .Values.drifthoundConfig | nindent 2 }}
+{{- end }}

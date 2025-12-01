@@ -1,0 +1,28 @@
+---
+name: Updatecli
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run at 1:00 every Sunday Night
+    - cron: '0 1 * * 1'
+
+permissions:
+  contents: "write"
+  pull-requests: "write"
+
+jobs:
+  updatecli:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@v2
+
+      - name: Run Updatecli in apply mode
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          updatecli apply --config updatecli/updatecli.d/ --values updatecli/values.yaml

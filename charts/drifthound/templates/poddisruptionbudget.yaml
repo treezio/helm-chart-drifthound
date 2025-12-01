@@ -1,0 +1,13 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "drifthound.fullname" . }}-drifthound-pdb
+  labels:
+  {{- include "drifthound.labels" . | nindent 4 }}
+spec:
+  minAvailable: {{ .Values.Pdb.minAvailable }}
+  maxUnavailable: {{ .Values.Pdb.maxUnavailable }}
+  selector:
+    matchLabels:
+      app: drifthound
+    {{- include "drifthound.selectorLabels" . | nindent 6 }}
