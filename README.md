@@ -33,7 +33,9 @@ helm uninstall [RELEASE_NAME]
 
 ## Configuring
 
-Check [values.yaml](./charts/drifthound/values.yaml) file or run:
+Check [values section](./charts/drifthound/README.md/#values) in drifthound chart README
+
+or run:
 
 ```console
 helm show values drifthound/drifthound

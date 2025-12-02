@@ -1,46 +1,59 @@
-# The number of replicas to deploy for the application
+# -- The number of replicas to deploy for the application
 replicaCount: 1
 
-# Configuration specific to drifthound application
+# -- Configuration specific to drifthound application
 drifthoundConfig: {}
   # APP_URL: https://drifthound.example.com
 
-# Configuration Secrets specific to drifthound application
+# -- Configuration Secrets specific to drifthound application
 drifthoundSecrets: {}
 
-# Image configurations
 image:
-  repository: ghcr.io/treezio/drifthound  # Docker image repository
-  pullPolicy: Always  # Image pull policy (Always, IfNotPresent, Never)
+  # -- Docker image repository
+  repository: ghcr.io/treezio/drifthound  # -- Docker image repository
+  # -- Docker image pull policy
+  pullPolicy: Always  # -- Image pull policy (Always, IfNotPresent, Never)
 
-# List of image pull secrets for private repositories
+# -- List of image pull secrets for private repositories
 imagePullSecrets: []
-#   - name: private-docker-reg-secret
+  # - name: private-docker-reg-secret
 
-# Overrides for chart name (helpful when you want to change the default resource names)
+# -- Overrides for chart name (helpful when you want to change the default resource names)
 nameOverride: ""
 fullnameOverride: ""
 
-# Service configurations
+# -- Service configurations
 service:
-  type: ClusterIP  # Kubernetes Service type
-  port: 80  # Service port exposed externally
-  targetPort: 5758  # Container port to which the service will send traffic
+  # -- Kubernetes Service type
+  type: ClusterIP
+  # -- Service port exposed
+  port: 80
+  # -- Container port to which the service will send traffic
+  targetPort: 8080
 
-# Service account configurations
+# -- Service account configurations
 serviceAccount:
-  enabled: false  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
+  enabled: false
+  # -- Annotations to add to the service account
   annotations: {}
 
-# Ingress configurations
+# -- Ingress configurations
 ingress:
-  enabled: false  # Enable or disable Ingress
+  # -- Enable or disable Ingress
+  enabled: false
+  # -- Ingress ClassName
   className: "nginx"
+  # -- Ingress Annotations
   annotations: {}
+  # -- Hostnames for the Ingress
   hosts: []
+    # - host: drifthound.example.com
+    #   paths:
+  # -- TLS configuration for the Ingress
   tls: []
 
-# Resources requests and limits
+# -- Resources requests and limits
 resources: {}
   # limits:
   #   cpu: "1"
@@ -49,20 +62,23 @@ resources: {}
   #   cpu: "500m"
   #   memory: "256Mi"
 
-# Annotations to add to the pod
+# -- Annotations to add to the pod
 podAnnotations: {}
 
-# Security context for the pod
+# -- Security context for the pod
 securityContext: {}
 
-# Security context for all containers in the pod
+# -- Security context for all containers in the pod
 podSecurityContext: {}
 
-# Rolling update strategy
+# -- Rolling update strategy
 rollingUpdate:
-  maxSurge: 1       # The maximum number of pods that can be created over the desired number of pods
-  maxUnavailable: 1 # The maximum number of pods that can be unavailable during the update process
+  # -- The maximum number of pods that can be created over the desired number of pods
+  maxSurge: 1
+  # -- The maximum number of pods that can be unavailable during the update process
+  maxUnavailable: 1
 
+# -- Affinity rules for pod scheduling
 affinity: {}
   # podAntiAffinity:
   #   requiredDuringSchedulingIgnoredDuringExecution:
@@ -74,13 +90,13 @@ affinity: {}
   #               - drifthound
   #       topologyKey: "kubernetes.io/hostname"
 
-# Node selector for pod scheduling
+# -- Node selector for pod scheduling
 nodeSelector: {}
 
-# Tolerations for pod scheduling
+# -- Tolerations for pod scheduling
 tolerations: []
 
-# Probes for checking the health of the application
+# -- Probes for checking the health of the application
 probes:
   readinessProbe:
     enabled: true
@@ -98,25 +114,33 @@ probes:
     initialDelaySeconds: 10
     periodSeconds: 5
 
-# Pod Disruption Budget (PDB) settings
+# -- Pod Disruption Budget (PDB) settings
 Pdb:
   enabled: false
-  minAvailable: 1  # Minimum available instances during a voluntary disruption
-  maxUnavailable: null  # Optionally set the maximum unavailable instances
+  minAvailable: 1  # -- Minimum available instances during a voluntary disruption
+  maxUnavailable: null  # -- Optionally set the maximum unavailable instances
 
-# Horizontal Pod Autoscaler (HPA) configurations
+# -- Horizontal Pod Autoscaler (HPA) configurations
 hpa:
-  enabled: false # Enable or disable HPA
-  targetCPUUtilizationPercentage: 80  # Target CPU utilization percentage for HPA to trigger scaling
-  maxReplicas: 10  # Maximum number of pods that HPA can scale up to
-  minReplicas: 2  # Minimum number of pods that HPA should maintain
+  # -- Enable or disable HPA
+  enabled: false
+  # -- Target CPU utilization percentage for HPA to trigger scaling
+  targetCPUUtilizationPercentage: 80
+  # -- Maximum number of pods that HPA can scale up to
+  maxReplicas: 10
+  # -- Minimum number of pods that HPA should maintain
+  minReplicas: 2
 
-# Database migrations job configuration
+# -- Database migrations job configuration
 migrations:
-  enabled: true  # Enable or disable database migrations job
+  # -- Enable or disable database migrations job
+  enabled: true
+  # -- Database migration job command
   command:
     - /bin/sh
     - -c
     - bundle exec rails db:migrate
-  backoffLimit: 3  # Number of retries before considering the job as failed
-  activeDeadlineSeconds: 600  # Maximum duration (in seconds) for the job to complete
+  # -- Number of retries before considering the job as failed
+  backoffLimit: 3
+  # -- Maximum duration (in seconds) for the job to complete
+  activeDeadlineSeconds: 600
