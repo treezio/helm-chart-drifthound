@@ -1,9 +1,15 @@
 # -- The number of replicas to deploy for the application
 replicaCount: 1
 
-# -- Configuration specific to drifthound application
+# -- Configuration specific to drifthound application. Accepted values: https://github.com/treezio/DriftHound/blob/main/docs/configuration.md#application-settings
 drifthoundConfig: {}
   # APP_URL: https://drifthound.example.com
+  # RAILS_ENV: development
+  # RAILS_LOG_LEVEL: info
+  # SECRET_KEY_BASE: Run `openssl rand -hex 64` or `bin/rails secret` to generate a secure key
+  # DRIFTHOUND_DATABASE_PASSWORD: your_database_password
+  # DATABASE_URL: postgres://drifthound:your_database_password@db:5432/drifthound_production
+  # RAILS_MAX_THREADS: 5
 
 # -- Configuration Secrets specific to drifthound application
 drifthoundSecrets: {}
