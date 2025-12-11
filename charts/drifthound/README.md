@@ -1,6 +1,6 @@
 # drifthound
 
-![Version: 0.2.6](https://img.shields.io/badge/Version-0.2.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.11](https://img.shields.io/badge/AppVersion-v0.2.11-informational?style=flat-square)
+![Version: 0.2.7](https://img.shields.io/badge/Version-0.2.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.12](https://img.shields.io/badge/AppVersion-v0.2.12-informational?style=flat-square)
 
 A Helm chart to deploy DriftHound App on Kubernetes
 
@@ -16,7 +16,7 @@ A Helm chart to deploy DriftHound App on Kubernetes
 |-----|------|---------|-------------|
 | Pdb | object | `{"enabled":false,"maxUnavailable":null,"minAvailable":1}` | Pod Disruption Budget (PDB) settings |
 | affinity | object | `{}` | Affinity rules for pod scheduling |
-| drifthoundConfig | object | `{}` | Configuration specific to drifthound application |
+| drifthoundConfig | object | `{}` | Configuration specific to drifthound application. Accepted values: https://github.com/treezio/DriftHound/blob/main/docs/configuration.md#application-settings |
 | drifthoundSecrets | object | `{}` | Configuration Secrets specific to drifthound application |
 | fullnameOverride | string | `""` |  |
 | hpa | object | `{"enabled":false,"maxReplicas":10,"minReplicas":2,"targetCPUUtilizationPercentage":80}` | Horizontal Pod Autoscaler (HPA) configurations |
