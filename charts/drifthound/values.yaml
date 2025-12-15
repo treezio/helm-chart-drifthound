@@ -10,7 +10,7 @@ drifthoundConfig: {}
 
 # -- Configuration Secrets specific to drifthound application
 drifthoundSecrets: {}
-  # ADMIN_PASSWORD: foo@example.com
+  # ADMIN_PASSWORD: super-secure-password
   # SECRET_KEY_BASE: Run `openssl rand -hex 64` or `bin/rails secret` to generate a secure key
   # DATABASE_URL: postgres://drifthound:your_database_password@db:5432/drifthound_production
 
