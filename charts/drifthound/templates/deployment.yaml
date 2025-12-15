@@ -18,10 +18,16 @@ spec:
     metadata:
       labels:
         {{- include "drifthound.selectorLabels" . | nindent 8 }}
-      {{- with .Values.podAnnotations }}
       annotations:
-          {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- if .Values.drifthoundConfig }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- end }}
+        {{- if .Values.drifthoundSecrets }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- end }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- if .Values.serviceAccount.enabled }}
       serviceAccountName: {{ include "drifthound.fullname" . }}
