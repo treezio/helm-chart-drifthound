@@ -1,6 +1,10 @@
 name: Generate Helm documentation
 on:
   - pull_request
+
+permissions:
+    contents: write
+
 jobs:
   generate:
     runs-on: ubuntu-latest
