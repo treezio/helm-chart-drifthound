@@ -1,14 +1,14 @@
 # drifthound
 
-![Version: 0.3.2](https://img.shields.io/badge/Version-0.3.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.3.2](https://img.shields.io/badge/AppVersion-v0.3.2-informational?style=flat-square)
+![Version: 0.3.4](https://img.shields.io/badge/Version-0.3.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.3.3](https://img.shields.io/badge/AppVersion-v0.3.3-informational?style=flat-square)
 
 A Helm chart to deploy DriftHound App on Kubernetes
 
-**Homepage:** <https://github.com/treezio/drifthound>
+**Homepage:** <https://github.com/drifthoundhq/drifthound>
 
 ## Source Code
 
-* <https://github.com/treezio/drifthound>
+* <https://github.com/drifthoundhq/drifthound>
 
 ## Values
 
@@ -16,7 +16,7 @@ A Helm chart to deploy DriftHound App on Kubernetes
 |-----|------|---------|-------------|
 | Pdb | object | `{"enabled":false,"maxUnavailable":null,"minAvailable":1}` | Pod Disruption Budget (PDB) settings |
 | affinity | object | `{}` | Affinity rules for pod scheduling |
-| drifthoundConfig | object | `{}` | Configuration specific to drifthound application. Accepted values: https://github.com/treezio/DriftHound/blob/main/docs/configuration.md#application-settings |
+| drifthoundConfig | object | `{}` | Configuration specific to drifthound application. Accepted values: https://github.com/drifthoundhq/DriftHound/blob/main/docs/configuration.md#application-settings |
 | drifthoundSecrets | object | `{}` | Configuration Secrets specific to drifthound application |
 | fullnameOverride | string | `""` |  |
 | hpa | object | `{"enabled":false,"maxReplicas":10,"minReplicas":2,"targetCPUUtilizationPercentage":80}` | Horizontal Pod Autoscaler (HPA) configurations |
@@ -25,7 +25,7 @@ A Helm chart to deploy DriftHound App on Kubernetes
 | hpa.minReplicas | int | `2` | Minimum number of pods that HPA should maintain |
 | hpa.targetCPUUtilizationPercentage | int | `80` | Target CPU utilization percentage for HPA to trigger scaling |
 | image.pullPolicy | string | `"Always"` | Docker image pull policy |
-| image.repository | string | `"ghcr.io/treezio/drifthound"` | Docker image repository |
+| image.repository | string | `"ghcr.io/drifthoundhq/drifthound"` | Docker image repository |
 | imagePullSecrets | list | `[]` | List of image pull secrets for private repositories |
 | ingress | object | `{"annotations":{},"className":"nginx","enabled":false,"hosts":[],"tls":[]}` | Ingress configurations |
 | ingress.annotations | object | `{}` | Ingress Annotations |

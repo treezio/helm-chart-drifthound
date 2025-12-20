@@ -1,8 +1,8 @@
 github:
-  user: "treeziops"
-  email: "updatecli-bot@treeziops.io"
-  username: "treeziops"
+  user: "drifthoundhq"
+  email: "updatecli-bot@drifthoundhq.io"
+  username: "drifthoundhq-bot"
   token: "GITHUB_TOKEN"
   branch: "main"
-  owner: "treezio"
-  repository: "helm-chart-drifthound"
+  owner: "drifthoundhq"
+  repository: "helm-chart"
