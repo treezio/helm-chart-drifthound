@@ -4,6 +4,6 @@ type: application
 version: 0.3.4
 description: A Helm chart to deploy DriftHound App on Kubernetes
 appVersion: v0.3.3
-home: https://github.com/treezio/drifthound
+home: https://github.com/drifthoundhq/drifthound
 sources:
-- https://github.com/treezio/drifthound
+- https://github.com/drifthoundhq/drifthound
