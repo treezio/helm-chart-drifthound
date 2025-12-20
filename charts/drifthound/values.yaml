@@ -16,7 +16,7 @@ drifthoundSecrets: {}
 
 image:
   # -- Docker image repository
-  repository: ghcr.io/treezio/drifthound  # -- Docker image repository
+  repository: ghcr.io/drifthoundhq/drifthound  # -- Docker image repository
   # -- Docker image pull policy
   pullPolicy: Always  # -- Image pull policy (Always, IfNotPresent, Never)
 
