@@ -1,7 +1,7 @@
 # -- The number of replicas to deploy for the application
 replicaCount: 1
 
-# -- Configuration specific to drifthound application. Accepted values: https://github.com/treezio/DriftHound/blob/main/docs/configuration.md#application-settings
+# -- Configuration specific to drifthound application. Accepted values: https://github.com/drifthoundhq/DriftHound/blob/main/docs/configuration.md#application-settings
 drifthoundConfig: {}
   # APP_URL: https://drifthound.example.com
   # RAILS_ENV: development

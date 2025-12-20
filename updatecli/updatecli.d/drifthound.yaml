@@ -20,7 +20,7 @@ sources:
     kind: githubrelease
     name: Get the latest DriftHound version
     spec:
-      owner: treezio
+      owner: drifthoundhq
       repository: drifthound
       token: "{{ requiredEnv .github.token }}"
       username: "{{ .github.username }}"
@@ -32,7 +32,7 @@ conditions:
     name: Check DriftHound {{ source "latestVersion" }} docker image tag exists in DockerHub
     kind: dockerimage
     spec:
-      image: ghcr.io/treezio/drifthound
+      image: ghcr.io/drifthoundhq/drifthound
       architecture: amd64
 
 targets:
